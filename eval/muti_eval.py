@@ -1,4 +1,5 @@
 # eval_batch_compare.py
+from pathlib import Path
 import os
 import time
 
@@ -13,7 +14,7 @@ from env.batch2048_core import Batch2048Core
 
 
 class ModelSpec:
-	def __init__(self, name: str, path: str, obs_mode: Batch2048Core.ObsMode, color: str):
+	def __init__(self, name: str, path: Path, obs_mode: Batch2048Core.ObsMode, color: str):
 		self.name = name
 		self.path = path
 		self.obs_mode = obs_mode
@@ -246,29 +247,31 @@ def plot_results(results: dict[str, dict], palette: dict[str, str], title_prefix
 
 
 if __name__ == "__main__":
+	root_dir = Path(__file__).parent.parent
+
 	# 비교할 모델들: (표시이름, 경로, 관측모드, 색상)
 	MODELS = [
 		ModelSpec(
 			name="PPO_7",
-			path="../tb_2048/PPO_7/checkpoints/latest_model_final.zip",
+			path=root_dir / "tb_2048/PPO_7/checkpoints/latest_model_final.zip",
 			obs_mode=Batch2048Core.ObsMode.ONEHOT256,
 			color="e8710a",
 		),
 		ModelSpec(
 			name="PPO_19",
-			path="../tb_2048/PPO_19/checkpoints/latest_model_final.zip",
+			path=root_dir / "tb_2048/PPO_19/checkpoints/latest_model_final.zip",
 			obs_mode=Batch2048Core.ObsMode.ONEHOT256,
 			color="9334e6",
 		),
 		ModelSpec(
 			name="PPO_20",
-			path="../tb_2048/PPO_20/checkpoints/latest_model_final.zip",
+			path=root_dir / "tb_2048/PPO_20/checkpoints/latest_model_final.zip",
 			obs_mode=Batch2048Core.ObsMode.ONEHOT256,
 			color="7cb342",
 		),
 		ModelSpec(
 			name="PPO_21",
-			path="../tb_2048/PPO_21/checkpoints/latest_model_final.zip",
+			path=root_dir / "tb_2048/PPO_21/checkpoints/latest_model_final.zip",
 			obs_mode=Batch2048Core.ObsMode.ONEHOT256,
 			color="425066",
 		),
